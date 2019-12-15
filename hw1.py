@@ -17,13 +17,21 @@ print((True == "hi")) #False
 print(True is 1) #False
 
 '''
-
+raw_input() возвращает строковые значения
+input() преобразует тип данных 
+в python 3.x raw_input() переименован в input() и выполняет те же функции 
 '''
 a = input("Pirnt number (input) ")
 b = raw_input("Print number (raw_input) ")
+print(type(eval(input('Text here')))) #int
+print(type(a)) #str
+print(type(b)) #str
 
-print(type(a))
-print(type(b))
 print(a+a)
 print(b+b)
 
+'''
+в python3 оператор print был сделан функцией для удобства, при сложных синтаксических конструкциях
+в функции print() легче ориентироваться 
+ 
+'''
