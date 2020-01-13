@@ -10,14 +10,24 @@ print("bool('hello') -> ", bool("hello"))  # True
 print("bool('T') -> ", bool("T"))  # True
 print("bool('False') -> ", bool("False"))  # True
 print("bool('True') -> ", bool("True"))  # True
-print("bool([]) -> ", bool([]))  # True
+print("bool([]) -> ", bool([]))  # False
 print("------")
 print("False == 123 -> ", False == 123)  # False
 print("False == 0 -> ", False == 0)  # True
 print("True == 1 -> ", True == 1)  # True
 print("True == 'hi' -> ", True == "hi")  # False
-print("True is 1 -> ", True is 1)  # False
-print("True is 'True' -> ", True is 'True')
+print("True is 1 -> ", (True is 1))  # False
+print("True is 'True' -> ", (True is 'True')) #False
+'''
+Integer, Float
+    0 - False
+    любое вещественное число, кроме 0 - True
+String
+    "" - False
+    "*" - True
+List, Dict, Tuple
+    (),[],{} - False           
+'''
 '''
 Python 2.x
 raw_input() читает данные из sys.stdin и преобразовывает в строку
