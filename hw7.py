@@ -28,7 +28,7 @@ print("Количество пользователей, использующих
 for i in dictShell:
     answShell += ' ' + i + ' - ' + str(dictShell.get(i)) + ' ;'
 answShell += ' )'
-print(answShell)
+
 f.close()
 
 
@@ -52,7 +52,7 @@ for line in fg:
     usersName.clear()
 answUID += " )"
 fg.close()
-print(answUID)
+
 
 f = open("output.txt","w")
 f.write(answShell + "\n")
