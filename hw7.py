@@ -10,7 +10,7 @@
 ( root:1, sudo:1001,1002,1003, ...)
 
 '''
-f = open("/etc/passwd.txt", "r")
+f = open("/etc/passwd", "r")
 dictShell = {}
 dictUID = {}
 dictGroupUid = {}
@@ -22,13 +22,11 @@ for line in f:
     if len(sline) >= 6:
         shell = sline[6].strip("\n")
         dictShell.update({shell: dictShell.get(shell, 0)+1})
-
         dictUID[sline[0]] = sline[2]  # записвыем словарь "Имя пользователя": UID
-print("Количество пользователей, использующих все имеющиеся интерпретаторы-оболочки")
+#print("Количество пользователей, использующих все имеющиеся интерпретаторы-оболочки")
 for i in dictShell:
     answShell += ' ' + i + ' - ' + str(dictShell.get(i)) + ' ;'
 answShell += ' )'
-
 f.close()
 
 
@@ -37,7 +35,6 @@ for line in fg:
     usersUID = ''
     groupName = line.split(":")[0]  # получаем имя группы
     usersName = line.split(":")[3].split(",")  # получаем имена пользователей принадлежащих просматриваемой группе
-
     if (len(usersName) == 0) or (usersName[0] == '\n') or (usersName[0] == ''):
         groupName = ''
         usersName.clear()
@@ -48,16 +45,18 @@ for line in fg:
         for i in dictUID:
             if un == i:
                 answUID += str(dictUID.get(i)) + ','  # записываем UIDы пользователей принадлежащей группе
-
     usersName.clear()
 answUID += " )"
 fg.close()
 
 
 f = open("output.txt","w")
-f.write(answShell + "\n")
+f.write("Количество пользователей, использующих все имеющиеся интерпретаторы-оболочки\n")
+f.write(answShell + "\n\n")
+f.write("Для всех групп в системе - UIDы пользователей состоящих в этих группах.\n")
 f.write(answUID + "\n")
 f.close()
+
 
 
 
