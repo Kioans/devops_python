@@ -4,29 +4,29 @@
 2. Получив вводные данные, выделяет полученные числа, суммирует их,
 и печатает полученную сумму.
 '''
-s = input()
+inputString = input()
 c = ''
 a = []
-f = False  # если false то число положительное
-inC = True  # если true то считывается число, иначе false начало строки
-for i in s:
+positiveInt = False  # если false то число положительное
+readInteger = True  # если true то считывается число, иначе false начало строки
+for i in inputString:
     '''
     если встретилось число то склеиваем строку из встречающихся цифр
     иначе преобразуем скленную строку в цисло, учитываем знак и записываем в список
     '''
     if '0' <= i <= '9':
-        inC = True
+        readInteger = True
         c = c+i
     else:
-        inC = False
-    if ((not(inC)) & (c != '')):
-        if f:
+        readInteger = False
+    if ((not(readInteger)) & (c != '')):
+        if positiveInt:
             a.append(-int(c))
-            f = False
+            positiveInt = False
             c=''
         else:
             a.append(int(c))
-            f = False
+            positiveInt = False
             c=''
     else:
         pass
@@ -35,19 +35,19 @@ for i in s:
     так как потенциальное число может быть отрицательным
     '''
     if i == '-':
-        f = True
+        positiveInt = True
     else:
-        if not(inC):
-            f = False
+        if not(readInteger):
+            positiveInt = False
 
 if ((c != '')):
-    if f:
+    if positiveInt:
         a.append(-int(c))
-        f = False
+        positiveInt = False
         c=''
     else:
         a.append(int(c))
-        f = False
+        positiveInt = False
         c=''
 print(sum(a))
 
