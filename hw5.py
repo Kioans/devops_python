@@ -13,11 +13,16 @@
 -> 2 1 8 4 2 3 5 7 10 18 82 2
 6
 '''
-s = input()
-a = s.split(" ")
+inputString = input("Введите натуральные числа через пробел: ")
+a = inputString.split(" ")
 a = [int(i) for i in a]
 a.sort()
+MissNumber = False
 for i in range(1, len(a)):
     if a.count(i) == 0:
         print(i)
+        MissNumber = True
         break
+
+if not MissNumber:
+    print("В ведёном диапазоне нет пропущенных чисел")
