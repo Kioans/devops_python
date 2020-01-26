@@ -8,12 +8,10 @@
 def fib(n):
     a = 0
     b = 1
-    s = []
     for i in range(n):
         a, b = b + a, a
-        s.append(a)
-    return s
+        print(a, end=' ')
 
 
 n = int(input())
-print(fib(n))
+fib(n)
