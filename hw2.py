@@ -1,5 +1,5 @@
 s = input("Введите строку ")
 ls = s.split(' ')
-a = list(set(ls))
-for i in a:
-    print(i, end=' ')
+cleandict = {i: ls.count(i) for i in ls}
+for key in cleandict:
+    print(key, end=' ')
