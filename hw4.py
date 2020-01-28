@@ -5,7 +5,7 @@
 и печатает полученную сумму.
 '''
 inputString = input()
-c = ''
+chislo = ''
 a = []
 positiveInt = False  # если false то число положительное
 readInteger = True  # если true то считывается число, иначе false начало строки
@@ -16,18 +16,18 @@ for i in inputString:
     '''
     if '0' <= i <= '9':
         readInteger = True
-        c = c+i
+        chislo = chislo + i
     else:
         readInteger = False
-    if ((not(readInteger)) & (c != '')):
+    if ((not(readInteger)) & (chislo != '')):
         if positiveInt:
-            a.append(-int(c))
+            a.append(-int(chislo))
             positiveInt = False
-            c=''
+            chislo= ''
         else:
-            a.append(int(c))
+            a.append(int(chislo))
             positiveInt = False
-            c=''
+            chislo= ''
     else:
         pass
     '''
@@ -40,14 +40,14 @@ for i in inputString:
         if not(readInteger):
             positiveInt = False
 
-if ((c != '')):
+if ((chislo != '')):
     if positiveInt:
-        a.append(-int(c))
+        a.append(-int(chislo))
         positiveInt = False
-        c=''
+        chislo= ''
     else:
-        a.append(int(c))
+        a.append(int(chislo))
         positiveInt = False
-        c=''
+        chislo= ''
 print(sum(a))
 
