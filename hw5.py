@@ -18,11 +18,14 @@ a = inputString.split(" ")
 a = [int(i) for i in a]
 a.sort()
 MissNumber = False
-for i in range(1, len(a)):
+for i in range(a[0], a[-1]):
     if a.count(i) == 0:
         print(i)
         MissNumber = True
         break
 
 if not MissNumber:
-    print("В ведёном диапазоне нет пропущенных чисел")
+    if a[0] != 1:
+        print(1)
+    else:
+        print(a[-1]+1)
