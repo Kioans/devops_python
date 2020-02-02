@@ -10,12 +10,13 @@
 ( root:1, sudo:1001,1002,1003, ...)
 
 '''
-f = open("/etc/passwd", "r")
+f = open("passwd.txt", "r")
 dictShell = {}
 dictUID = {}
+dictGID = {}
 dictGroupUid = {}
 answShell = '( '
-answUID = '( '
+answUID = ''
 for line in f:
     sline = line.split(":")
     listUID = []
@@ -23,6 +24,7 @@ for line in f:
         shell = sline[6].strip("\n")
         dictShell.update({shell: dictShell.get(shell, 0)+1})
         dictUID[sline[0]] = sline[2]  # записвыем словарь "Имя пользователя": UID
+        dictGID[sline[0]] = sline[3]  # записвыем словарь "Имя пользователя" : GID
 #print("Количество пользователей, использующих все имеющиеся интерпретаторы-оболочки")
 for i in dictShell:
     answShell += ' ' + i + ' - ' + str(dictShell.get(i)) + ' ;'
@@ -30,25 +32,28 @@ answShell += ' )'
 f.close()
 
 
-fg = open("/etc/group", "r")
+fg = open("group.txt", "r")
+dict_groups_name = {}
+group_id_name = {}
+list_etc_group =[]
 for line in fg:
     usersUID = ''
+    list_etc_group.append(line.strip('\n').split(":"))
     groupName = line.split(":")[0]  # получаем имя группы
-    usersName = line.split(":")[3].split(",")  # получаем имена пользователей принадлежащих просматриваемой группе
-    if (len(usersName) == 0) or (usersName[0] == '\n') or (usersName[0] == ''):
-        groupName = ''
-        usersName.clear()
-    else:
-        answUID += ' ' + groupName + ':'
-    for un in usersName:  # по имени пользователя принадлежащей просматриваемой группе находим его UID в dictUID
-        un = un.strip('\n')
-        for i in dictUID:
-            if un == i:
-                answUID += str(dictUID.get(i)) + ','  # записываем UIDы пользователей принадлежащей группе
-    usersName.clear()
-answUID += " )"
-fg.close()
+    groupID = line.split(":")[2]
+    usersName = line.split(":")[3].strip("\n").split(",")  # получаем имена пользователей принадлежащих просматриваемой группе
+    dict_groups_name[groupID] = groupName
 
+for name in dictUID: #итерируемся по именам пользователей и групп из passwd
+    groupName = dict_groups_name[dictGID[name]]
+    answUID += f'uid={dictUID[name]}({name}) gid={dictGID[name]}({groupName}) ' \
+f'groups={dictGID[name]}({groupName}),'
+    for uig in list_etc_group:
+        if name in uig:
+            if uig[0] != name:
+                answUID += f'{uig[2]}({uig[0]}),'
+    answUID += '\n'
+fg.close()
 
 f = open("output.txt","w")
 f.write("Количество пользователей, использующих все имеющиеся интерпретаторы-оболочки\n")
