@@ -14,8 +14,8 @@
 6
 '''
 inputString = input("Введите натуральные числа через пробел: ")
-a = inputString.split(" ")
-a = [int(i) for i in a]
+a = inputString.split(' ')
+a = [int(i) for i in a if i != '']
 a.sort()
 MissNumber = False
 for i in range(a[0], a[-1]):
