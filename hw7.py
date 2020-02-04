@@ -10,7 +10,7 @@
 ( root:1, sudo:1001,1002,1003, ...)
 
 '''
-f = open("passwd.txt", "r")
+f = open("/etc/passwd", "r")
 dictShell = {}
 dictUID = {}
 dictGID = {}
@@ -32,7 +32,7 @@ answShell += ' )'
 f.close()
 
 
-fg = open("group.txt", "r")
+fg = open("/etc/group", "r")
 dict_groups_name = {}
 group_id_name = {}
 list_etc_group =[]
