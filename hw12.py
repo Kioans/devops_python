@@ -13,5 +13,5 @@ def fib(n):
         print(a, end=' ')
 
 
-n = int(input())
+n = int(input("Введите чило: "))
 fib(n)
