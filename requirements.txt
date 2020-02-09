@@ -1,0 +1,12 @@
+certifi==2019.11.28
+chardet==3.0.4
+dns-batch-resolver==0.0.2
+dnspython==1.16.0
+idna==2.8
+opencage==1.2
+Pillow==7.0.0
+pycurl==7.43.0.5
+PyYAML==5.3
+requests==2.22.0
+six==1.14.0
+urllib3==1.25.8
