@@ -4,7 +4,7 @@ dns-batch-resolver==0.0.2
 dnspython==1.16.0
 idna==2.8
 opencage==1.2
-Pillow==7.0.0
+Pillow==8.3.2
 pycurl==7.43.0.5
 PyYAML==5.3
 requests==2.22.0
